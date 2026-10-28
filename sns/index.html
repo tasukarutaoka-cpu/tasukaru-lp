@@ -1581,7 +1581,150 @@
         <div class="p-form-simple c-form m_form">
           <div class="c-inner c-inner--sm c-inner--one-elem">
             <div class="only-edit"><i class="fa fa-info-circle"></i>フォームから送信された内容はマイページの「フォーム」ボタンから確認できます。</div>
-            <div id="moko-form-slot"></div>
+            <div id="moko-form-slot">
+<style>
+#moko-form-slot{--mk-brand:#00a5d4;--mk-dark:#0087b1;--mk-line:#cfdde5;--mk-req:#e53935;text-align:left;font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;color:#313131;line-height:1.7}
+#moko-form-slot .mk-err{display:none;background:#fdecec;border:1px solid #f3b3b3;color:#a3271f;border-radius:8px;padding:10px 12px;font-size:13.5px;margin:0 0 16px}
+#moko-form-slot .mk-field{margin:0 0 20px}
+#moko-form-slot .mk-label{display:block;font-weight:700;font-size:15px;margin:0 0 7px}
+#moko-form-slot .mk-req{display:inline-block;background:var(--mk-req);color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:2px}
+#moko-form-slot .mk-opt{display:inline-block;background:#9db8c4;color:#fff;font-size:11px;font-weight:700;border-radius:4px;padding:1px 7px;margin-left:8px;vertical-align:2px}
+#moko-form-slot .mk-note{font-size:12.5px;color:#5a6d75;margin:6px 0 0}
+#moko-form-slot input[type=text],#moko-form-slot input[type=email],#moko-form-slot input[type=tel],#moko-form-slot input[type=date],#moko-form-slot select,#moko-form-slot textarea{width:100%;font-size:16px;padding:11px 12px;border:1px solid var(--mk-line);border-radius:8px;background:#fbfdfe;color:#313131;box-sizing:border-box}
+#moko-form-slot textarea{min-height:88px;resize:vertical}
+#moko-form-slot .mk-choices{display:flex;flex-wrap:wrap;gap:8px 18px}
+#moko-form-slot .mk-choices label{display:inline-flex;align-items:center;gap:6px;font-size:15px;cursor:pointer}
+#moko-form-slot .mk-choices input{width:19px;height:19px;accent-color:var(--mk-brand)}
+#moko-form-slot .mk-checkline{display:flex;align-items:flex-start;gap:8px;font-size:14.5px;cursor:pointer}
+#moko-form-slot .mk-checkline input{width:19px;height:19px;accent-color:var(--mk-brand);margin-top:3px;flex:none}
+#moko-form-slot .mk-submit{width:100%;border:none;border-radius:10px;background:#ffc400;color:#4a3800;font-size:19px;font-weight:800;letter-spacing:.12em;padding:15px 0;cursor:pointer;box-shadow:0 3px 0 #d9a400}
+#moko-form-slot .mk-submit:disabled{opacity:.55;cursor:wait}
+#moko-form-slot .mk-thanks{display:none;text-align:center;padding:22px 6px 8px}
+#moko-form-slot .mk-thanks .mk-big{font-size:20px;font-weight:800;color:var(--mk-dark);margin:0 0 12px}
+#moko-form-slot .mk-thanks p{font-size:14.5px;margin:0 0 8px}
+</style>
+<div class="mk-err" id="snsf_err"></div><form id="snsf_form" novalidate><div class="mk-field"><label class="mk-label" for="snsf_name">お名前<span class="mk-req">必須</span></label><input type="text" id="snsf_name" name="お名前" placeholder="山田太郎" required></div>
+<div class="mk-field"><label class="mk-label" for="snsf_kana">フリガナ<span class="mk-req">必須</span></label><input type="text" id="snsf_kana" name="フリガナ" placeholder="ヤマダタロウ" required></div>
+<div class="mk-field"><label class="mk-label" for="snsf_zip">郵便番号<span class="mk-req">必須</span></label><input type="text" id="snsf_zip" name="郵便番号" placeholder="123-4567" required></div>
+<div class="mk-field"><label class="mk-label" for="snsf_addr">住所<span class="mk-req">必須</span></label><input type="text" id="snsf_addr" name="住所" required></div>
+<div class="mk-field"><label class="mk-label" for="snsf_tel">お電話番号<span class="mk-req">必須</span></label><input type="tel" id="snsf_tel" name="お電話番号" inputmode="tel" required></div>
+<div class="mk-field"><label class="mk-label" for="snsf_mail">メールアドレス<span class="mk-req">必須</span></label><input type="email" id="snsf_mail" name="メールアドレス" inputmode="email" required></div>
+<div class="mk-field"><label class="mk-checkline"><input type="checkbox" id="snsf_news" checked><span>送信したメールアドレスでお知らせ配信に登録する</span></label></div>
+<div class="mk-field"><label class="mk-label" for="snsf_d1">作業日 第一希望<span class="mk-req">必須</span></label><input type="date" id="snsf_d1" name="作業日 第一希望" required></div>
+<div class="mk-field"><span class="mk-label">作業日 第一希望の希望時間<span class="mk-req">必須</span></span><div class="mk-choices" data-group="作業日 第一希望の希望時間"><label><input type="checkbox" value="9時〜12時">9時〜12時</label><label><input type="checkbox" value="12時〜15時">12時〜15時</label><label><input type="checkbox" value="15時〜18時">15時〜18時</label><label><input type="checkbox" value="上記以外で相談したい">上記以外で相談したい</label></div></div>
+<div class="mk-field"><label class="mk-label" for="snsf_d2">作業日 第二希望<span class="mk-req">必須</span></label><input type="date" id="snsf_d2" name="作業日 第二希望" required></div>
+<div class="mk-field"><span class="mk-label">作業日 第二希望の希望時間<span class="mk-req">必須</span></span><div class="mk-choices" data-group="作業日 第二希望の希望時間"><label><input type="checkbox" value="9時〜12時">9時〜12時</label><label><input type="checkbox" value="12時〜15時">12時〜15時</label><label><input type="checkbox" value="15時〜18時">15時〜18時</label><label><input type="checkbox" value="上記以外で相談したい">上記以外で相談したい</label></div></div>
+<div class="mk-field"><label class="mk-label" for="snsf_d3">作業日 第三希望<span class="mk-req">必須</span></label><input type="date" id="snsf_d3" name="作業日 第三希望" required></div>
+<div class="mk-field"><span class="mk-label">作業日 第三希望の希望時間<span class="mk-req">必須</span></span><div class="mk-choices" data-group="作業日 第三希望の希望時間"><label><input type="checkbox" value="9時〜12時">9時〜12時</label><label><input type="checkbox" value="12時〜15時">12時〜15時</label><label><input type="checkbox" value="15時〜18時">15時〜18時</label><label><input type="checkbox" value="上記以外で相談したい">上記以外で相談したい</label></div></div>
+<div class="mk-field"><label class="mk-label" for="snsf_normal">通常タイプエアコン<span class="mk-req">必須</span></label><select id="snsf_normal" name="通常タイプエアコン" required></select></div>
+<div class="mk-field"><label class="mk-label" for="snsf_auto">お掃除機能付きエアコン<span class="mk-req">必須</span></label><select id="snsf_auto" name="お掃除機能付きエアコン" required></select></div>
+<div class="mk-field"><label class="mk-label" for="snsf_model">エアコンのメーカー名と型式番号<span class="mk-opt">任意</span></label><input type="text" id="snsf_model" name="エアコンのメーカー名と型式番号"><p class="mk-note">ご回答頂けますと予約の確定がスムーズに行うことができます。</p></div>
+<div class="mk-field"><span class="mk-label">オプション<span class="mk-req">必須</span></span><div class="mk-choices" data-group="オプション"><label><input type="checkbox" value="なし">なし</label><label><input type="checkbox" value="防カビコート">防カビコート</label><label><input type="checkbox" value="ドレンホース">ドレンホース</label><label><input type="checkbox" value="室外機洗浄">室外機洗浄</label><label><input type="checkbox" value="天井埋込エアコン">天井埋込エアコン</label></div></div>
+<div class="mk-field"><label class="mk-label" for="snsf_set1">おまとめセット（室外機清掃+防カビ・抗菌コート）<span class="mk-req">必須</span></label><select id="snsf_set1" name="おまとめセット（室外機清掃+防カビ・抗菌コート）" required></select></div>
+<div class="mk-field"><label class="mk-label" for="snsf_set2">まるごとセット（室外機清掃+防カビ・抗菌コート+ドレンホース清掃）<span class="mk-opt">任意</span></label><select id="snsf_set2" name="まるごとセット（室外機清掃+防カビ・抗菌コート+ドレンホース清掃）"></select></div>
+<div class="mk-field"><span class="mk-label">駐車場の有無をお選びください<span class="mk-req">必須</span></span><div class="mk-choices"><label><input type="radio" name="駐車場の有無" value="あり" required>あり</label><label><input type="radio" name="駐車場の有無" value="なし">なし</label></div></div>
+<div class="mk-field"><span class="mk-label">ペットの有無<span class="mk-req">必須</span></span><div class="mk-choices"><label><input type="radio" name="ペットの有無" value="あり" required>あり</label><label><input type="radio" name="ペットの有無" value="なし">なし</label></div></div>
+<div class="mk-field"><label class="mk-label" for="snsf_pets">ペットの飼育匹数<span class="mk-opt">任意</span></label><textarea id="snsf_pets" name="ペットの飼育匹数" placeholder="ペット有りとご回答された方はご記入ください。例）犬1匹、猫2匹"></textarea></div>
+<div class="mk-field"><span class="mk-label">支払方法をお選びください<span class="mk-req">必須</span></span><div class="mk-choices"><label><input type="radio" name="支払方法" value="現金" required>現金</label><label><input type="radio" name="支払方法" value="クレジットカード">クレジットカード</label><label><input type="radio" name="支払方法" value="PayPay">PayPay</label></div></div>
+<div class="mk-field"><span class="mk-label">当店のご利用は何回目ですか？<span class="mk-req">必須</span></span><div class="mk-choices"><label><input type="radio" name="当店のご利用回数" value="はじめて" required>はじめて</label><label><input type="radio" name="当店のご利用回数" value="２回目以上">２回目以上</label></div></div>
+<div class="mk-field"><label class="mk-label" for="snsf_coupon">クーポンコードをご利用の場合はご入力ください<span class="mk-opt">任意</span></label><textarea id="snsf_coupon" name="クーポンコード"></textarea></div>
+<div class="mk-field"><label class="mk-label" for="snsf_msg">ご不明な点、特に汚れが気になる箇所等ございましたら、こちらへご記入ください<span class="mk-opt">任意</span></label><textarea id="snsf_msg" name="ご不明な点・気になる箇所など"></textarea></div>
+<button type="submit" class="mk-submit" id="snsf_btn">送信</button></form><div class="mk-thanks" id="snsf_thanks"><p class="mk-big">送信が完了しました</p><p>お申込みありがとうございます。</p><p>メールが届いてから3営業日以内に、担当者よりご連絡させていただきます。</p><p>しばらくお待ちくださいますようお願いいたします。</p></div>
+<script>
+(function(){
+function fill(id){
+var sel = document.getElementById(id);
+var o = document.createElement('option'); o.value = 'なし'; o.textContent = 'なし'; sel.appendChild(o);
+for (var i = 1; i <= 10; i++){
+var op = document.createElement('option');
+op.value = i + '台'; op.textContent = i + '台'; sel.appendChild(op);
+}
+}
+fill('snsf_normal'); fill('snsf_auto'); fill('snsf_set1'); fill('snsf_set2');
+var ENDPOINT = 'https://formsubmit.co/ajax/8f4a3db4221a2bf50d449e491645cd9e';
+var form = document.getElementById('snsf_form');
+var errBox = document.getElementById('snsf_err');
+var btn = document.getElementById('snsf_btn');
+function showErr(msg){
+errBox.textContent = msg; errBox.style.display = 'block';
+errBox.scrollIntoView({behavior:'smooth', block:'center'});
+}
+form.addEventListener('submit', function(ev){
+ev.preventDefault();
+errBox.style.display = 'none';
+var missing = [];
+form.querySelectorAll('[required]').forEach(function(el){
+if (el.type === 'radio'){
+if (!form.querySelector('input[name="' + el.name + '"]:checked')) {
+if (missing.indexOf(el.name) === -1) missing.push(el.name);
+}
+} else if (!el.value || !el.value.trim()){
+var lab = form.querySelector('label[for="' + el.id + '"]');
+missing.push(lab ? lab.textContent.replace('必須','').replace('任意','').trim() : el.name);
+}
+});
+var groups = form.querySelectorAll('.mk-choices[data-group]');
+groups.forEach(function(g){
+var any = g.querySelectorAll('input[type=checkbox]:checked').length > 0;
+if (!any) missing.push(g.getAttribute('data-group'));
+});
+if (missing.length){
+showErr('未入力の必須項目があります：' + missing.join('、'));
+return;
+}
+var mail = document.getElementById('snsf_mail').value.trim();
+if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)){
+showErr('メールアドレスの形式をご確認ください。');
+return;
+}
+var data = {};
+data['_subject'] = 'エアコンクリーニング申込フォーム（クリーンサービス・お申込み）';
+data['_template'] = 'table';
+data['_captcha'] = 'false';
+data['_replyto'] = mail;
+data['_cc'] = 'tasukaru.yasui@gmail.com,maimai.2001.1.7@gmail.com,benriya.tasukaru@gmail.com,tasukaru.nandemo@gmail.com';
+['お名前','フリガナ','郵便番号','住所','お電話番号','メールアドレス'].forEach(function(n){
+data[n] = form.querySelector('[name="' + n + '"]').value.trim();
+});
+data['お知らせ配信に登録する'] = document.getElementById('snsf_news').checked ? '登録する' : '登録しない';
+['作業日 第一希望','作業日 第二希望','作業日 第三希望'].forEach(function(n){
+data[n] = form.querySelector('[name="' + n + '"]').value;
+});
+groups.forEach(function(g){
+var vals = [];
+g.querySelectorAll('input[type=checkbox]:checked').forEach(function(c){ vals.push(c.value); });
+data[g.getAttribute('data-group')] = vals.join('、');
+});
+['通常タイプエアコン','お掃除機能付きエアコン','エアコンのメーカー名と型式番号',
+'おまとめセット（室外機清掃+防カビ・抗菌コート）','まるごとセット（室外機清掃+防カビ・抗菌コート+ドレンホース清掃）',
+'ペットの飼育匹数','クーポンコード','ご不明な点・気になる箇所など'].forEach(function(n){
+var el = form.querySelector('[name="' + n + '"]');
+data[n] = el ? (el.value || '').trim() : '';
+});
+['駐車場の有無','ペットの有無','支払方法','当店のご利用回数'].forEach(function(n){
+var el = form.querySelector('input[name="' + n + '"]:checked');
+data[n === '当店のご利用回数' ? '当店のご利用は何回目ですか？' : n] = el ? el.value : '';
+});
+btn.disabled = true; btn.textContent = '送信中…';
+fetch(ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body: JSON.stringify(data)})
+.then(function(r){ return r.json(); })
+.then(function(j){
+if (j && (j.success === true || j.success === 'true')){
+form.style.display = 'none';
+document.getElementById('snsf_thanks').style.display = 'block';
+} else {
+btn.disabled = false; btn.textContent = '送信';
+showErr('送信に失敗しました。お手数ですが、もう一度お試しください。');
+}
+})
+.catch(function(){
+btn.disabled = false; btn.textContent = '送信';
+showErr('送信に失敗しました。通信環境をご確認のうえ、もう一度お試しください。');
+});
+});
+})();
+</script>
+</div>
           </div>
         </div>
       </div>
